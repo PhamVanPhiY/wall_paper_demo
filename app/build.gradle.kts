@@ -36,6 +36,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.gson)
+    implementation(libs.colorpickerview)
     implementation(libs.android.gif.drawable)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

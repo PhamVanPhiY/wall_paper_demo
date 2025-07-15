@@ -9,7 +9,7 @@
     <Button
         android:text="Set border wallpaper"
         android:scaleType="centerCrop"
-        android:id="@+id/wallpaper_image"
+        android:id="@+id/wallpaper_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/set_wallpaper" />

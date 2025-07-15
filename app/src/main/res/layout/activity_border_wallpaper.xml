@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000000">
+
+    <!-- Preview Container -->
+    <RelativeLayout
+        android:id="@+id/preview_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#000000">
+
+        <com.example.demowallpaper.AnimatedBorderView
+            android:id="@+id/border_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" />
+
+    </RelativeLayout>
+
+    <!-- Controls Container -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1a1a1a">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Thickness Control -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thickness:"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="10dp"
+                    android:minWidth="90dp" />
+
+                <SeekBar
+                    android:id="@+id/thickness_seekbar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:progressTint="#4CAF50"
+                    android:thumbTint="#4CAF50" />
+
+            </LinearLayout>
+
+            <!-- Speed Control -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Speed:"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="10dp"
+                    android:minWidth="90dp" />
+
+                <SeekBar
+                    android:id="@+id/speed_seekbar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:progressTint="#2196F3"
+                    android:thumbTint="#2196F3" />
+
+            </LinearLayout>
+
+            <!-- Border Length Control -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Length:"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="10dp"
+                    android:minWidth="90dp" />
+
+                <SeekBar
+                    android:id="@+id/length_seekbar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:progressTint="#FFC107"
+                    android:thumbTint="#FFC107" />
+
+            </LinearLayout>
+
+            <!-- Corner Radius Control -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Corner:"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="10dp"
+                    android:minWidth="90dp" />
+
+                <SeekBar
+                    android:id="@+id/corner_seekbar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:progressTint="#9C27B0"
+                    android:thumbTint="#9C27B0" />
+
+            </LinearLayout>
+
+            <!-- Color Selection Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Colors:"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp"
+                        android:layout_marginEnd="10dp" />
+
+                    <Button
+                        android:id="@+id/show_color_picker_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Color"
+                        android:textColor="#ffffff"
+                        android:background="#FF5722"
+                        android:textSize="14sp"
+                        android:padding="8dp" />
+
+                </LinearLayout>
+
+                <!-- RecyclerView for colors -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/colors_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tap on a color to remove it"
+                    android:textColor="#888888"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/cancel_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cancel"
+                    android:textColor="#ffffff"
+                    android:background="#666666"
+                    android:layout_marginEnd="10dp" />
+
+                <Button
+                    android:id="@+id/apply_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Apply Border Wallpaper"
+                    android:textColor="#ffffff"
+                    android:background="#4CAF50"
+                    android:layout_marginStart="10dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

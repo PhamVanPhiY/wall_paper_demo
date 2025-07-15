@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.BIND_WALLPAPER" />
+    <uses-feature android:name="android.software.live_wallpaper" />
 
     <application
         android:allowBackup="true"
@@ -29,6 +30,11 @@
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
 
+        <activity
+            android:name=".BorderWallpaperActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+
         <service
             android:name=".GifWallpaperService"
             android:exported="true"
@@ -40,6 +46,19 @@
             <meta-data
                 android:name="android.service.wallpaper"
                 android:resource="@xml/gif_wallpaper" />
+        </service>
+
+        <service
+            android:name=".BorderWallpaperService"
+            android:label="Border Wallpaper"
+            android:exported="true"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/wallpaper" />
         </service>
     </application>
 
