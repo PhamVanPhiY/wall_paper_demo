@@ -36,6 +36,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.viewpager2)
+    implementation(libs.glide)
     implementation(libs.gson)
     implementation(libs.colorpickerview)
     implementation(libs.android.gif.drawable)

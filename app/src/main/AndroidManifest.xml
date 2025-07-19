@@ -4,7 +4,9 @@
 
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.BIND_WALLPAPER" />
+
     <uses-feature android:name="android.software.live_wallpaper" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -50,8 +52,8 @@
 
         <service
             android:name=".BorderWallpaperService"
-            android:label="Border Wallpaper"
             android:exported="true"
+            android:label="Border Wallpaper"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />

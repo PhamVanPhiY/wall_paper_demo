@@ -18,7 +18,6 @@ class BorderWallpaperService : WallpaperService() {
         private var surfaceWidth = 0
         private var surfaceHeight = 0
         private var animationProgress = 0f
-
         private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         private var borderThickness = 10f
         private var animationSpeed = 50
