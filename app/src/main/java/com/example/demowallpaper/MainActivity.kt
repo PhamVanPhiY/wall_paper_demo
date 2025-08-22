@@ -56,7 +56,17 @@ class MainActivity : AppCompatActivity() {
 
         parallaxWallpaper = findViewById(R.id.set_parallax_wallpaper)
         parallaxWallpaper.setOnClickListener {
-
+            try {
+                val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
+                intent.putExtra(
+                    WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                    ComponentName(this, ParallaxWallpaperService::class.java)
+                )
+                startActivity(intent)
+                Toast.makeText(this, "Chọn 'Parallax Wallpaper' để đặt làm background", Toast.LENGTH_LONG).show()
+            } catch (e: Exception) {
+                Toast.makeText(this, "Không thể mở cài đặt wallpaper: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
         }
 
 
