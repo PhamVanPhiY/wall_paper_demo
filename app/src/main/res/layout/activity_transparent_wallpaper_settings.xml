@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cài đặt Transparent Camera Wallpaper"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"
+        android:textColor="#333333" />
+
+    <TextView
+        android:id="@+id/transparency_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Độ trong suốt: 70%"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:textColor="#666666" />
+
+    <SeekBar
+        android:id="@+id/transparency_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp" />
+
+
+    <Button
+        android:id="@+id/switch_camera_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Đang dùng: Camera sau\nBấm để chuyển sang camera trước"
+        android:textSize="14sp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_transparent_bg" />
+
+    <Button
+        android:id="@+id/save_settings_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Lưu Cài Đặt"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_save_bg" />
+
+    <Button
+        android:id="@+id/apply_wallpaper_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Áp Dụng Wallpaper"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_save_bg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="⚠️ Lưu ý: Wallpaper trong suốt có thể tốn pin do camera hoạt động liên tục"
+        android:textSize="12sp"
+        android:textColor="#FF6B35"
+        android:layout_marginTop="8dp"
+        android:gravity="center" />
+
+</LinearLayout>

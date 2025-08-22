@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">DemoWallPaper</string>
+    <string name="app_name">Demo Wallpaper</string>
+    <string name="transparent_wallpaper_description">Live wallpaper hiển thị camera với độ trong suốt</string>
 </resources>

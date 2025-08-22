@@ -5,7 +5,10 @@
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.BIND_WALLPAPER" />
 
-    <uses-feature android:name="android.software.live_wallpaper" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature android:name="android.hardware.camera.front" android:required="false" />
+    <uses-feature android:name="android.software.live_wallpaper" android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -27,10 +30,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".TransparentWallpaperSettingsActivity"
+            android:exported="false"
+            android:label="Transparent Wallpaper Settings" />
         <activity
             android:name=".WallpaperSettingsActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+
+
 
         <activity
             android:name=".BorderWallpaperActivity"
@@ -62,6 +72,21 @@
                 android:name="android.service.wallpaper"
                 android:resource="@xml/wallpaper" />
         </service>
+
+        <service
+            android:name=".TransparentCameraWallpaperService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="Transparent Camera Wallpaper"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/transparent_camera_wallpaper" />
+        </service>
+
     </application>
 
 

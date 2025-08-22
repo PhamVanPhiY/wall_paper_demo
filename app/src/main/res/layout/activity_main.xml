@@ -18,6 +18,12 @@
         android:clipChildren="false" />
 
     <Button
+        android:id="@+id/transparent_wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set transparent wallpaper" />
+
+    <Button
         android:id="@+id/wallpaper_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,4 +34,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Set wallpaper" />
+
+    <Button
+        android:id="@+id/set_parallax_wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set parallax wallpaper" />
 </LinearLayout>

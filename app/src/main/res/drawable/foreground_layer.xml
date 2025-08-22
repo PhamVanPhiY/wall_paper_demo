@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:width="2100dp"
+    android:height="1500dp"
+    android:viewportWidth="2100"
+    android:viewportHeight="1500"
+    tools:ignore="VectorRaster">
+
+    <!-- Large rocks/boulders -->
+    <path
+        android:pathData="M100,1200 A120,80 0 1,1 340,1200 A120,80 0 1,1 100,1200 Z"
+        android:fillColor="#696969" />
+
+    <path
+        android:pathData="M600,1250 A100,60 0 1,1 800,1250 A100,60 0 1,1 600,1250 Z"
+        android:fillColor="#708090" />
+
+    <path
+        android:pathData="M1200,1220 A110,70 0 1,1 1420,1220 A110,70 0 1,1 1200,1220 Z"
+        android:fillColor="#696969" />
+
+    <path
+        android:pathData="M1700,1240 A90,55 0 1,1 1880,1240 A90,55 0 1,1 1700,1240 Z"
+        android:fillColor="#708090" />
+
+    <!-- Tall grass -->
+    <path
+        android:pathData="M300,1350 L305,1250 L310,1350 M320,1340 L325,1240 L330,1340 M340,1345 L345,1245 L350,1345"
+        android:strokeColor="#9ACD32"
+        android:strokeWidth="3"
+        android:fillColor="@color/black" />
+
+    <path
+        android:pathData="M850,1380 L855,1280 L860,1380 M870,1370 L875,1270 L880,1370 M890,1375 L895,1275 L900,1375"
+        android:strokeColor="#9ACD32"
+        android:strokeWidth="3"
+        android:fillColor="@color/black" />
+
+    <path
+        android:pathData="M1450,1360 L1455,1260 L1460,1360 M1470,1350 L1475,1250 L1480,1350 M1490,1355 L1495,1255 L1500,1355"
+        android:strokeColor="#9ACD32"
+        android:strokeWidth="3"
+        android:fillColor="@color/black" />
+
+    <!-- Small flowers -->
+    <path
+        android:pathData="M250,1300 A8,8 0 1,1 250,1316 A8,8 0 1,1 250,1300 Z"
+        android:fillColor="#FFB6C1" />
+
+    <path
+        android:pathData="M750,1320 A6,6 0 1,1 750,1332 A6,6 0 1,1 750,1320 Z"
+        android:fillColor="#DDA0DD" />
+
+    <path
+        android:pathData="M1350,1310 A7,7 0 1,1 1350,1324 A7,7 0 1,1 1350,1310 Z"
+        android:fillColor="#FFB6C1" />
+
+</vector>
