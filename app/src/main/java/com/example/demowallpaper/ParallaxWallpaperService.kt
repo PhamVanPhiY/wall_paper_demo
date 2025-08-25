@@ -1,7 +1,12 @@
 package com.example.demowallpaper
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Matrix
+import android.graphics.Paint
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -36,7 +41,6 @@ class ParallaxWallpaperService : WallpaperService() {
         private var currentX = 0f
         private var currentY = 0f
 
-
         // Thêm các biến để tính giới hạn
         private var maxCurrentX = 0f
         private var maxCurrentY = 0f
@@ -64,11 +68,11 @@ class ParallaxWallpaperService : WallpaperService() {
         private val treesSpeed = 5.5f
         private val foregroundSpeed = 3f
 
-        // Scale factor
-        private val backgroundScale = 1.3f
-        private val mountainScale = 1.2f
-        private val treesScale = 1.15f
-        private val foregroundScale = 1.1f
+        // Scale factor - TĂNG ĐỂ TẠO THÊM KHÔNG GIAN DI CHUYỂN
+        private val backgroundScale = 1.5f  // Tăng từ 1.3f
+        private val mountainScale = 1.4f    // Tăng từ 1.2f
+        private val treesScale = 1.3f       // Tăng từ 1.15f
+        private val foregroundScale = 1.25f // Tăng từ 1.1f
 
         private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
@@ -92,8 +96,9 @@ class ParallaxWallpaperService : WallpaperService() {
             setupLayerMatrix(backgroundBitmap, backgroundMatrix, backgroundScale) { width, height ->
                 backgroundImageWidth = width
                 backgroundImageHeight = height
-                maxCurrentX = (width - surfaceWidth) / 2f / backgroundSpeed
-                maxCurrentY = (height - surfaceHeight) / 2f / backgroundSpeed
+                maxCurrentX = max(0f, (width - surfaceWidth) / 2f / backgroundSpeed)
+                maxCurrentY = max(0f, (height - surfaceHeight) / 2f / backgroundSpeed)
+
             }
             setupLayerMatrix(mountainBitmap, mountainMatrix, mountainScale) { width, height ->
                 mountainImageWidth = width
@@ -109,13 +114,20 @@ class ParallaxWallpaperService : WallpaperService() {
             }
         }
 
-        private fun setupLayerMatrix(bitmap: Bitmap, matrix: Matrix, scale: Float, onImageSizeCalculated: (Float, Float) -> Unit) {
+        private fun setupLayerMatrix(
+            bitmap: Bitmap,
+            matrix: Matrix,
+            scale: Float,
+            onImageSizeCalculated: (Float, Float) -> Unit
+        ) {
             val imageWidth = bitmap.width.toFloat()
             val imageHeight = bitmap.height.toFloat()
 
-            // Tính scale để ảnh phủ kín surface
+            // THAY ĐỔI: Đảm bảo ảnh luôn lớn hơn surface ở cả 2 chiều
             val scaleX = (surfaceWidth * scale) / imageWidth
             val scaleY = (surfaceHeight * scale) / imageHeight
+
+            // Sử dụng scale lớn nhất để đảm bảo có không gian di chuyển
             val finalScale = max(scaleX, scaleY)
 
             // Tính vị trí để center ảnh
@@ -183,10 +195,46 @@ class ParallaxWallpaperService : WallpaperService() {
         }
 
         private fun updateAllLayers(canvas: Canvas) {
-            updateLayerMatrix(canvas, backgroundBitmap, backgroundMatrix, backgroundScale, backgroundImageWidth, backgroundImageHeight, currentX * backgroundSpeed, currentY * backgroundSpeed)
-            updateLayerMatrix(canvas, mountainBitmap, mountainMatrix, mountainScale, mountainImageWidth, mountainImageHeight, currentX * mountainSpeed, currentY * mountainSpeed)
-            updateLayerMatrix(canvas, treesBitmap, treesMatrix, treesScale, treesImageWidth, treesImageHeight, currentX * treesSpeed, currentY * treesSpeed)
-            updateLayerMatrix(canvas, foregroundBitmap, foregroundMatrix, foregroundScale, foregroundImageWidth, foregroundImageHeight, currentX * foregroundSpeed, currentY * foregroundSpeed)
+            updateLayerMatrix(
+                canvas,
+                backgroundBitmap,
+                backgroundMatrix,
+                backgroundScale,
+                backgroundImageWidth,
+                backgroundImageHeight,
+                currentX * backgroundSpeed,
+                currentY * backgroundSpeed
+            )
+            updateLayerMatrix(
+                canvas,
+                mountainBitmap,
+                mountainMatrix,
+                mountainScale,
+                mountainImageWidth,
+                mountainImageHeight,
+                currentX * mountainSpeed,
+                currentY * mountainSpeed
+            )
+            updateLayerMatrix(
+                canvas,
+                treesBitmap,
+                treesMatrix,
+                treesScale,
+                treesImageWidth,
+                treesImageHeight,
+                currentX * treesSpeed,
+                currentY * treesSpeed
+            )
+            updateLayerMatrix(
+                canvas,
+                foregroundBitmap,
+                foregroundMatrix,
+                foregroundScale,
+                foregroundImageWidth,
+                foregroundImageHeight,
+                currentX * foregroundSpeed,
+                currentY * foregroundSpeed
+            )
         }
 
         private fun updateLayerMatrix(
@@ -212,8 +260,8 @@ class ParallaxWallpaperService : WallpaperService() {
             val baseCenterY = (surfaceHeight - scaledImageHeight) / 2f
 
             // Tính giới hạn di chuyển
-            val maxMoveX = (scaledImageWidth - surfaceWidth) / 2f
-            val maxMoveY = (scaledImageHeight - surfaceHeight) / 2f
+            val maxMoveX = max(0f, (scaledImageWidth - surfaceWidth) / 2f)
+            val maxMoveY = max(0f, (scaledImageHeight - surfaceHeight) / 2f)
 
             // Giới hạn di chuyển
             val limitedMoveX = max(-maxMoveX, min(moveX, maxMoveX))
@@ -243,29 +291,28 @@ class ParallaxWallpaperService : WallpaperService() {
                     val x = it.values[0]
                     val y = it.values[1]
 
-                    // Thêm threshold để tránh nhiễu nhỏ
-                    if (Math.abs(x) < 0.1f && Math.abs(y) < 0.1f) {
+                    // Giảm threshold để cho phép di chuyển nhỏ hơn
+                    if (Math.abs(x) < 0.05f && Math.abs(y) < 0.05f) {
                         return
                     }
 
                     val targetX = currentX - (x * sensitivity)
                     val targetY = currentY + (y * sensitivity)
 
-                    val smoothing = 0.15f // Tăng tốc độ phản hồi
+                    val smoothing = 0.15f
                     currentX += (targetX - currentX) * smoothing
                     currentY += (targetY - currentY) * smoothing
 
-                    // QUAN TRỌNG: Giới hạn currentX và currentY để tránh tích lũy vô hạn
                     if (maxCurrentX > 0) {
                         currentX = max(-maxCurrentX, min(currentX, maxCurrentX))
                     }
                     if (maxCurrentY > 0) {
                         currentY = max(-maxCurrentY, min(currentY, maxCurrentY))
                     }
+
                 }
             }
         }
-
         override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
 
         private fun stopDrawing() {
@@ -277,7 +324,6 @@ class ParallaxWallpaperService : WallpaperService() {
             }
             drawThread = null
         }
-
         override fun onDestroy() {
             isRunning = false
             stopDrawing()
